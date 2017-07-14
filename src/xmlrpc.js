@@ -1,12 +1,3 @@
-// Fix an IE problem (another one)
-var HAS_ACTIVEX = false;
-try {
-    new ActiveXObject('MSXML2.DOMDocument');
-    HAS_ACTIVEX = true;
-} catch(e) {
-    // Do nothing
-}
-
 /**
  * XML-RPC communication service.
  */
@@ -400,6 +391,14 @@ angular.module('xml-rpc', [])
 
 
 .factory('helperXmlRpc', function(){
+    // Fix an IE problem (another one)
+    try {
+        new ActiveXObject('MSXML2.DOMDocument');
+        var HAS_ACTIVEX = true;
+    } catch(e) {
+        var HAS_ACTIVEX = false;
+    }
+
     /**
      * Clones an array object
      */
